@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Chat, GenerateContentResponse } from "@google/genai";
 import { createChatSession } from '../services/geminiService';
+import { sendEmailBrief } from '../services/emailService';
 // Safe text renderer
 const SafeMarkdown = ({ content }: { content: string }) => {
   if (!content) return null;
@@ -65,6 +66,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onStartReview }) => {
         if (c.functionCalls && c.functionCalls.length > 0) {
           const fc = c.functionCalls[0];
           if (fc.name === 'offerContractUpload') hasOfferedUpload = true;
+          if (fc.name === 'sendLegalBrief') {
+            const args = fc.args as any;
+            await sendEmailBrief(args.email, args.recipientName, 'AI-CHAT', args.summary);
+            setMessages(prev => [...prev, { role: 'model', text: `📧 **Status Update:** I have successfully dispatched the legal briefing to **${args.email}** for **${args.recipientName}**.` }]);
+          }
         }
 
         if (c.text) {

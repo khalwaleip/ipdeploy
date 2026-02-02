@@ -142,11 +142,25 @@ export const createChatSession = (): Chat | null => {
     parameters: { type: Type.OBJECT, properties: {} },
   };
 
+  const emailTool: FunctionDeclaration = {
+    name: 'sendLegalBrief',
+    description: 'Send the current legal brief or analysis to an email address.',
+    parameters: {
+      type: Type.OBJECT,
+      properties: {
+        email: { type: Type.STRING, description: 'The recipient email address.' },
+        recipientName: { type: Type.STRING, description: 'The name of the recipient.' },
+        summary: { type: Type.STRING, description: 'A short summary of the legal points to include.' }
+      },
+      required: ['email', 'recipientName', 'summary']
+    },
+  };
+
   return ai.chats.create({
     model: "gemini-3-flash-preview",
     config: {
       systemInstruction: SYSTEM_INSTRUCTION_CHAT,
-      tools: [{ functionDeclarations: [uploadTool] }],
+      tools: [{ functionDeclarations: [uploadTool, emailTool] }],
     }
   });
 };
