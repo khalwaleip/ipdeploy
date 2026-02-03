@@ -8,12 +8,12 @@ const supabaseUrl = 'https://ucusxqmezxrfmjovkdqk.supabase.co'
  * If you are running locally, ensure this is in your .env file or AI Studio Secrets.
  * The hardcoded value below is your project-specific anon key.
  */
-const supabaseAnonKey: string = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjdXN4cW1lenhyZm1qb3ZrZHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMzE0NDgsImV4cCI6MjA4MzcwNzQ0OH0.EXwHRXGqQQ2zaJwLKbXAeKixQISKOkfsmUwMwIBH_m0'
+const supabaseAnonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjdXN4cW1lenhyZm1qb3ZrZHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMzE0NDgsImV4cCI6MjA4MzcwNzQ0OH0.EXwHRXGqQQ2zaJwLKbXAeKixQISKOkfsmUwMwIBH_m0'
 
 // Validates that the key is a real Supabase JWT (Must start with eyJ)
-export const isSupabaseConfigured = 
-  !!supabaseAnonKey && 
-  supabaseAnonKey !== 'PLACEHOLDER' && 
+export const isSupabaseConfigured =
+  !!supabaseAnonKey &&
+  supabaseAnonKey !== 'PLACEHOLDER' &&
   supabaseAnonKey.startsWith('eyJ')
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
