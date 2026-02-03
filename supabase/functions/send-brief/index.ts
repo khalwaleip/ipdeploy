@@ -4,8 +4,9 @@ import nodemailer from "npm:nodemailer@6.9.7";
 
 declare const Deno: any;
 
-const GMAIL_USER = "khalwaleip@gmail.com";
-const GMAIL_APP_PASSWORD = Deno.env.get("GMAIL_APP_PASSWORD");
+// You will set these in your Supabase Dashboard or via CLI
+const GMAIL_USER = Deno.env.get('GMAIL_USER');
+const GMAIL_APP_PASSWORD = Deno.env.get('GMAIL_APP_PASSWORD');
 
 serve(async (req) => {
   const corsHeaders = {
@@ -20,8 +21,8 @@ serve(async (req) => {
   try {
     const { email, name, caseId, brief } = await req.json();
 
-    if (!GMAIL_APP_PASSWORD) {
-      throw new Error("Missing GMAIL_APP_PASSWORD environment variable. Please set this Supabase secret with a Google App Password.");
+    if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+      throw new Error("Missing GMAIL configuration (User or App Password). Please set these in your Supabase secrets.");
     }
 
     // Configure Nodemailer for Gmail
