@@ -12,6 +12,7 @@ import { sendEmailBrief } from './services/emailService';
 import { mpesaService } from './services/mpesaService';
 import { LEGAL_TEMPLATES } from './contractsData';
 import { LegalTemplate } from './types';
+import { newsService } from './services/newsService';
 // Safe Markdown-ish renderer to replace library if it crashes
 const SafeMarkdown = ({ content }: { content: string }) => {
   if (!content) return null;
@@ -77,36 +78,40 @@ const ShoppingCartIcon = () => (
 );
 
 const NewsTicker = () => {
-  const newsItems = [
-    "Kenya Copyright Board (KECOBO) updates digital royalty frameworks for 2025.",
-    "KFCB signals revision of licensing for independent Nairobi creators.",
-    "Kalasha Awards nominations window closing soon.",
-    "MCSK announces quarterly distribution schedule.",
-    "Netflix expanding local investment in East African original titles.",
-    "High Court sets precedent on AI-generated copyright in Kenya."
+  const [news, setNews] = useState<any[]>([]);
+
+  useEffect(() => {
+    const getNews = async () => {
+      const latestNews = await newsService.fetchLatestNews();
+      setNews(latestNews);
+    };
+    getNews();
+
+    // Refresh every 15 minutes
+    const interval = setInterval(getNews, 15 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const displayNews = news.length > 0 ? news : [
+    { title: "Kenya Copyright Board (KECOBO) updates digital royalty frameworks for 2025.", source: "KECOBO" },
+    { title: "KFCB signals revision of licensing for independent Nairobi creators.", source: "KFCB" },
+    { title: "Kalasha Awards nominations window closing soon.", source: "Kalasha" }
   ];
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-legal-900 border-t border-legal-gold/20 z-40 h-10 flex items-center overflow-hidden">
       <div className="bg-legal-gold text-legal-900 px-4 py-2 font-bold text-xs uppercase tracking-wider z-10 h-full flex items-center shadow-lg whitespace-nowrap">
+        <span className="w-2 h-2 bg-red-600 rounded-full mr-2 animate-pulse"></span>
         Live Feed
       </div>
       <div className="whitespace-nowrap animate-marquee flex items-center">
-        {newsItems.concat(newsItems).map((item, index) => (
+        {displayNews.concat(displayNews).map((item, index) => (
           <span key={index} className="text-slate-400 text-xs mx-8 inline-block">
-            <span className="text-legal-gold mr-2 font-bold">●</span> {item}
+            <span className="text-legal-gold mr-2 font-bold font-mono">[{item.source}]</span>
+            {item.title}
           </span>
         ))}
       </div>
-      <style>{`
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </div>
   );
 };
