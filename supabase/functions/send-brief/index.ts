@@ -38,7 +38,7 @@ serve(async (req) => {
       <div style="font-family: serif; color: #1e293b; max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #e2e8f0;">
         <div style="text-align: center; border-bottom: 2px solid #cca43b; padding-bottom: 20px; margin-bottom: 30px;">
           <h1 style="margin: 0; color: #0f172a;">Khalwale & Co</h1>
-          <p style="margin: 5px 0 0 0; font-size: 12px; text-transform: uppercase; color: #cca43b; letter-spacing: 2px;">IP & Entertainment Division</p>
+          <p style="margin: 5px 0 0 0; font-size: 12px; text-transform: uppercase; color: #cca43b; letter-spacing: 2px;">IP Division</p>
         </div>
         
         <p>Dear ${name},</p>

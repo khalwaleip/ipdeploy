@@ -400,7 +400,7 @@ export default function App() {
         <h1 className="text-5xl md:text-7xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-legal-goldLight via-white to-legal-gold">
           Khalwale & Co Advocates
         </h1>
-        <h2 className="text-3xl md:text-4xl font-serif text-slate-300 italic">IP & Entertainment Division</h2>
+        <h2 className="text-3xl md:text-4xl font-serif text-slate-300 italic">IP Division</h2>
       </div>
       <p className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed font-light">
         Elite legal vetting and protection for the <span className="text-white font-medium border-b border-legal-gold/50">Modern Creative Economy</span>.
@@ -986,7 +986,7 @@ export default function App() {
 
           <div className="text-center w-64 border-t-2 border-[#cca43b] pt-4">
             <p className="text-base font-bold text-slate-900">Senior Partner</p>
-            <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">IP & Entertainment Division</p>
+            <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">IP Division</p>
           </div>
         </div>
 
@@ -1014,7 +1014,7 @@ export default function App() {
               </div>
               <div className="flex flex-col text-left">
                 <span className="text-2xl font-serif text-white tracking-wide font-bold leading-none">Khalwale & Co</span>
-                <span className="text-xs text-legal-gold font-bold uppercase tracking-[0.3em] mt-1.5">IP & Entertainment Division</span>
+                <span className="text-xs text-legal-gold font-bold uppercase tracking-[0.3em] mt-1.5">IP Division</span>
               </div>
             </div>
 

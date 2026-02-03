@@ -12,7 +12,7 @@ import { storageService } from "./storageService";
 const PROMPT_CONTRACT_ANALYSIS = (clientName: string) => `
 You are the Senior IP Consultant at Khalwale & Co Advocates. Your client is ${clientName}.
 
-DOCUMENT TYPE: Entertainment Contract (Music/Film).
+DOCUMENT TYPE: IP Related Contract (Media/Entertainment/Tech).
 
 INSTRUCTIONS:
 1. RISK IDENTIFICATION: Perform a high-level audit. Specifically look for "Work for Hire" clauses, hidden recoupment terms, and territory overreach.

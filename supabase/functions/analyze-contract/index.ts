@@ -20,13 +20,13 @@ serve(async (req) => {
 
   try {
     const { file, userInfo } = await req.json();
-    
+
     // Initialize AI Server-Side
     const ai = new GoogleGenAI({ apiKey });
-    
+
     const prompt = `
       You are the Senior IP Consultant at Khalwale & Co Advocates. Your client is ${userInfo.name}.
-      DOCUMENT TYPE: Entertainment Contract (Music/Film).
+      DOCUMENT TYPE: IP Related Contract (Media/Entertainment/Tech).
       INSTRUCTIONS: Perform a comprehensive risk assessment (Kenyan/Intl Law).
       Format: Markdown.
     `;
