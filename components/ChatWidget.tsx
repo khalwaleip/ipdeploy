@@ -141,13 +141,30 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onStartReview }) => {
       )}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="pointer-events-auto bg-legal-gold text-legal-900 rounded-2xl p-5 shadow-2xl border-4 border-legal-900 transform transition-all hover:scale-110 active:scale-95 group relative"
+        className="pointer-events-auto flex flex-col items-center group relative animate-bounce-short transition-all hover:scale-105 active:scale-95"
       >
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-legal-900"></div>
-        {isOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
-        ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+        <div className="mb-2 bg-legal-900/80 backdrop-blur-sm px-3 py-1 rounded-full border border-legal-gold/30 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-legal-gold text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">I'm Khatiebi</span>
+        </div>
+
+        <div className="relative w-20 h-20 rounded-full border-4 border-legal-900 shadow-2xl overflow-hidden bg-legal-gold transition-all hover:border-legal-gold">
+          <img
+            src="/assets/khatiebi.png"
+            alt="Khatiebi AI"
+            className="w-full h-full object-cover transform transition-transform group-hover:scale-110"
+          />
+          <div className={`absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-legal-900 shadow-sm ${isOpen ? 'bg-legal-gold' : 'bg-green-500 animate-pulse'}`}></div>
+        </div>
+
+        <div className="mt-2 bg-legal-900/80 backdrop-blur-sm px-3 py-1 rounded-full border border-legal-gold/30 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-slate-300 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Ask me</span>
+        </div>
+
+        {/* Persistent Badge for Mobile/Discovery */}
+        {!isOpen && (
+          <div className="absolute -top-1 -right-1 flex flex-col space-y-1 items-end md:hidden">
+            <span className="bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-legal-900">Live</span>
+          </div>
         )}
       </button>
     </div>
