@@ -33,5 +33,13 @@ export const LEGAL_TEMPLATES: LegalTemplate[] = [
         price: 5000,
         category: 'Business',
         benefits: ['Commission capping', 'Sunset clauses', 'Performance milestones']
+    },
+    {
+        id: 'producer-catalog-sheet',
+        name: 'Producer Song Catalog & Metadata Sheet',
+        description: 'The professional "Bible" for tracking publishing, sync splits, ISRC/IPI, and distribution data.',
+        price: 1000,
+        category: 'Production',
+        benefits: ['Sync & Publishing ready', 'BPM/Key/Stems tracking', 'IPI & ISRC metadata core']
     }
 ];
